@@ -10,25 +10,24 @@ public class NumberSchema {
     public NumberSchema() {
     }
 
-    private int countRequired;
-    private int countPositive;
-    private int countRange;
+    private boolean countRequired;
+    private boolean countPositive;
+    private boolean countRange;
     private int lowerLimit;
     private int upperLimit;
-    private final ArrayList<Boolean> repositoryAuditResults = new ArrayList<>();
 
     public NumberSchema required() {
-        countRequired += 1;
+        countRequired = true;
         return this;
     }
 
     public NumberSchema positive() {
-        countPositive += 1;
+        countPositive = true;
         return this;
     }
 
     public NumberSchema range(int lowerLimit, int upperLimit) {
-        countRange += 1;
+        countRange = true;
         this.lowerLimit = lowerLimit;
         this.upperLimit = upperLimit;
         return this;
@@ -36,18 +35,23 @@ public class NumberSchema {
 
     public boolean isValid(Integer value) {
 
-        if (getCountRequired() != 0) {
-            repositoryAuditResults.add(value != null);
+        var isValid = true;
+
+        if (!countRequired && value == null) {
+            return true;
         }
-        if (getCountPositive() != 0) {
-            assert value != null;
-            repositoryAuditResults.add(value > 0);
-        }
-        if (getCountRange() != 0) {
-            assert value != null;
-            repositoryAuditResults.add(value >= getLowerLimit() && value <= getUpperLimit());
+        isValid = value != null;
+
+        if (countPositive && isValid) {
+            isValid = value > 0;
         }
 
-        return !getRepositoryAuditResults().contains(false);
+        if (countRange && isValid) {
+            isValid = value >= getLowerLimit() && value <= getUpperLimit();
+        }
+
+        return isValid;
+
     }
+
 }
