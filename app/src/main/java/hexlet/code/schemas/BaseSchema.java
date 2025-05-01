@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Predicate;
 
@@ -13,7 +14,7 @@ import java.util.function.Predicate;
 public class BaseSchema<T> {
 
     private T checkedValue;
-    private Map<String, Predicate<T>> verificationRepository;
+    private Map<String, Predicate<T>> verificationRepository = new HashMap<>();
 
     public boolean isValid(T valueForVerification) {
 
