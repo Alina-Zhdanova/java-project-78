@@ -1,6 +1,9 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/Alina-Zhdanova/java-project-78/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Alina-Zhdanova/java-project-78/actions)
-
 [![Java CI](https://github.com/Alina-Zhdanova/java-project-78/actions/workflows/ci.yml/badge.svg)](https://github.com/Alina-Zhdanova/java-project-78/actions/workflows/ci.yml)
-[![Maintainability](https://api.codeclimate.com/v1/badges/7ab3ff265315d139deb1/maintainability)](https://codeclimate.com/github/Alina-Zhdanova/java-project-78/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/7ab3ff265315d139deb1/test_coverage)](https://codeclimate.com/github/Alina-Zhdanova/java-project-78/test_coverage)
+
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=Alina-Zhdanova_java-project-78)](https://sonarcloud.io/summary/new_code?id=Alina-Zhdanova_java-project-78)
+
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Alina-Zhdanova_java-project-78&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Alina-Zhdanova_java-project-78)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Alina-Zhdanova_java-project-78&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Alina-Zhdanova_java-project-78)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Alina-Zhdanova_java-project-78&metric=bugs)](https://sonarcloud.io/summary/new_code?id=Alina-Zhdanova_java-project-78)
