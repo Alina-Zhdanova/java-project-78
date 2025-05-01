@@ -2,56 +2,33 @@ package hexlet.code.schemas;
 
 import lombok.Getter;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Predicate;
 
 @Getter
-public class NumberSchema {
+public class NumberSchema extends BaseSchema<Integer> {
 
-    public NumberSchema() {
-    }
-
-    private boolean countRequired;
-    private boolean countPositive;
-    private boolean countRange;
+    private final Map<String, Predicate<Integer>> verificationRepository = new HashMap<>();
     private int lowerLimit;
     private int upperLimit;
 
     public NumberSchema required() {
-        countRequired = true;
+        verificationRepository.put("required", Objects::nonNull);
         return this;
     }
 
     public NumberSchema positive() {
-        countPositive = true;
+        verificationRepository.put("positive", value -> value > 0);
         return this;
     }
 
-    public NumberSchema range(int lowerLimit, int upperLimit) {
-        countRange = true;
-        this.lowerLimit = lowerLimit;
-        this.upperLimit = upperLimit;
+    public NumberSchema range(int valueLowerLimit, int valueUpperLimit) {
+        lowerLimit = valueLowerLimit;
+        upperLimit = valueUpperLimit;
+        verificationRepository.put("range", value -> value >= lowerLimit && value <= upperLimit);
         return this;
-    }
-
-    public boolean isValid(Integer value) {
-
-        var isValid = true;
-
-        if (!countRequired && value == null) {
-            return true;
-        }
-        isValid = value != null;
-
-        if (countPositive && isValid) {
-            isValid = value > 0;
-        }
-
-        if (countRange && isValid) {
-            isValid = value >= getLowerLimit() && value <= getUpperLimit();
-        }
-
-        return isValid;
-
     }
 
 }

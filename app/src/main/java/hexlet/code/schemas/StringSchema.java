@@ -2,50 +2,32 @@ package hexlet.code.schemas;
 
 import lombok.Getter;
 
-@Getter
-public class StringSchema {
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Predicate;
 
-    private boolean countRequired;
-    private boolean countMinLength;
-    private boolean countContains;
-    private int length;
-    private String substring;
+@Getter
+public class StringSchema extends BaseSchema<String> {
+
+    private final Map<String, Predicate<String>> verificationRepository = new HashMap<>();
+    private int minimumLength;
+    private String stringShouldContain;
 
     public StringSchema required() {
-        countRequired = true;
+        verificationRepository.put("required", value -> value != null && !value.isEmpty());
         return this;
     }
 
     public StringSchema minLength(int length) {
-        countMinLength = true;
-        this.length = length;
+        minimumLength = length;
+        verificationRepository.put("minLength", value -> value.length() >= length);
         return this;
     }
 
     public StringSchema contains(String substring) {
-        countContains = true;
-        this.substring = substring;
+        stringShouldContain = substring;
+        verificationRepository.put("contains", value -> value.contains(substring));
         return this;
-    }
-
-    public boolean isValid(String value) {
-
-        var isValid = true;
-
-        if (!countRequired && value == null) {
-            return true;
-        }
-        isValid = value != null && !value.isEmpty();
-
-        if (countMinLength && isValid) {
-            isValid = value.length() >= getLength();
-        }
-
-        if (countContains && isValid) {
-            isValid = value.contains(getSubstring());
-        }
-
-        return isValid;
     }
 
 }

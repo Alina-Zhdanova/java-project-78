@@ -58,18 +58,24 @@ public class NumberSchemaTest {
         var actual1 = schema.range(5, 10).isValid(5);
         var actual2 = schema.range(5, 10).isValid(10);
         var actual3 = schema.range(5, 10).isValid(7);
+        var actual4 = schema.range(5, 10)
+            .range(4, 11).isValid(7);
 
-        var actual4 = schema.range(5, 10).isValid(4);
-        var actual5 = schema.range(5, 10).isValid(11);
-        var actual6 = schema.range(5, 10).isValid(21);
+        var actual5 = schema.range(3, 10)
+            .range(5, 10).isValid(4);
+        var actual6 = schema.range(5, 10).isValid(4);
+        var actual7 = schema.range(5, 10).isValid(11);
+        var actual8 = schema.range(5, 10).isValid(21);
 
         assertTrue(actual1);
         assertTrue(actual2);
         assertTrue(actual3);
+        assertTrue(actual4);
 
-        assertFalse(actual4);
         assertFalse(actual5);
         assertFalse(actual6);
+        assertFalse(actual7);
+        assertFalse(actual8);
 
     }
 

@@ -1,8 +1,5 @@
 package hexlet.code;
 
-import hexlet.code.schemas.StringSchema;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -47,10 +44,14 @@ public class StringSchemaTest {
         var schema = v.string();
 
         var actual1 = schema.minLength(3).isValid("dddd");
-        var actual2 = schema.minLength(3).isValid("d");
+        var actual2 = schema.minLength(3).minLength(3).isValid("dddd");
+        var actual3 = schema.minLength(1).minLength(3).isValid("d");
+        var actual4 = schema.minLength(3).isValid("d");
 
         assertTrue(actual1);
-        assertFalse(actual2);
+        assertTrue(actual2);
+        assertFalse(actual3);
+        assertFalse(actual4);
 
     }
 
@@ -61,10 +62,14 @@ public class StringSchemaTest {
         var schema = v.string();
 
         var actual1 = schema.contains("d").isValid("dddd");
-        var actual2 = schema.contains("r").isValid("dddd");
+        var actual2 = schema.contains("d").contains("b").isValid("dddb");
+        var actual3 = schema.contains("d").contains("r").isValid("dddd");
+        var actual4 = schema.contains("r").isValid("dddd");
 
         assertTrue(actual1);
-        assertFalse(actual2);
+        assertTrue(actual2);
+        assertFalse(actual3);
+        assertFalse(actual4);
 
     }
 
