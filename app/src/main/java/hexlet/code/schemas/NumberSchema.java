@@ -11,8 +11,6 @@ import java.util.function.Predicate;
 public class NumberSchema extends BaseSchema<Integer> {
 
     private final Map<String, Predicate<Integer>> verificationRepository = new HashMap<>();
-    private int lowerLimit;
-    private int upperLimit;
 
     public NumberSchema required() {
         verificationRepository.put("required", Objects::nonNull);
@@ -24,9 +22,7 @@ public class NumberSchema extends BaseSchema<Integer> {
         return this;
     }
 
-    public NumberSchema range(int valueLowerLimit, int valueUpperLimit) {
-        lowerLimit = valueLowerLimit;
-        upperLimit = valueUpperLimit;
+    public NumberSchema range(int lowerLimit, int upperLimit) {
         verificationRepository.put("range", value -> value >= lowerLimit && value <= upperLimit);
         return this;
     }

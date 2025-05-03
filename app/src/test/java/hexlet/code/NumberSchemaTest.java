@@ -13,13 +13,15 @@ public class NumberSchemaTest {
         var v = new Validator();
         var schema = v.number();
 
-        var actual1 = schema.positive().isValid(null);
-        var actual2 = schema.range(5, 10).isValid(null);
-        var actual3 = schema.positive().range(5, 10).isValid(null);
+        var actual1 = schema.isValid(null);
+        var actual2 = schema.positive().isValid(null);
+        var actual3 = schema.range(5, 10).isValid(null);
+        var actual4 = schema.positive().range(5, 10).isValid(null);
 
         assertTrue(actual1);
         assertTrue(actual2);
         assertTrue(actual3);
+        assertTrue(actual4);
 
     }
 

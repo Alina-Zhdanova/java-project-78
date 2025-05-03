@@ -13,13 +13,15 @@ public class StringSchemaTest {
         var v = new Validator();
         var schema = v.string();
 
-        var actual1 = schema.minLength(3).isValid(null);
-        var actual2 = schema.contains("d").isValid(null);
-        var actual3 = schema.minLength(3).contains("d").isValid(null);
+        var actual1 = schema.isValid(null);
+        var actual2 = schema.minLength(3).isValid(null);
+        var actual3 = schema.contains("d").isValid(null);
+        var actual4 = schema.minLength(3).contains("d").isValid(null);
 
         assertTrue(actual1);
         assertTrue(actual2);
         assertTrue(actual3);
+        assertTrue(actual4);
 
     }
 
@@ -29,11 +31,13 @@ public class StringSchemaTest {
         var v = new Validator();
         var schema = v.string();
 
-        var actual1 = schema.required().isValid("dddd");
-        var actual2 = schema.required().isValid("");
+        var actual1 = schema.isValid("");
+        var actual2 = schema.required().isValid("dddd");
+        var actual3 = schema.required().isValid("");
 
         assertTrue(actual1);
-        assertFalse(actual2);
+        assertTrue(actual2);
+        assertFalse(actual3);
 
     }
 
@@ -74,7 +78,7 @@ public class StringSchemaTest {
     }
 
     @Test
-    public void testStringSchemaRequiredMinLengthWithContains() {
+    public void testStringSchemaRequiredMinLengthContains() {
 
         var v = new Validator();
         var schema = v.string();
