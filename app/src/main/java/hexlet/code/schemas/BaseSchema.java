@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 
 @Getter
 @NoArgsConstructor
-public class BaseSchema<T> {
+public abstract class BaseSchema<T> {
 
     private Map<String, Predicate<T>> nameCheckToMechanicsCheck;
 

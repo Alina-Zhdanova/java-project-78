@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.function.Predicate;
 
 @Getter
-public class MapSchema extends BaseSchema<Map<String, String>> {
+public final class MapSchema extends BaseSchema<Map<String, String>> {
 
     private final Map<String, Predicate<Map<String, String>>> nameCheckToMechanicsCheck = new HashMap<>();
 
