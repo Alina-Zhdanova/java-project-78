@@ -22,7 +22,7 @@ public class NumberSchema extends BaseSchema<Integer> {
     }
 
     public NumberSchema positive() {
-        nameCheckToMechanicsCheck.put("positive", value -> value > 0);
+        nameCheckToMechanicsCheck.put("positive", value -> value == null || value > 0);
         return this;
     }
 
