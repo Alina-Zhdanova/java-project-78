@@ -1,6 +1,5 @@
 package hexlet.code.schemas;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,21 +8,19 @@ import java.util.function.Predicate;
 
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 public class BaseSchema<T> {
 
-    private T checkedValue;
-    private Map<String, Predicate<T>> verificationRepository;
+    private Map<String, Predicate<T>> nameCheckToMechanicsCheck;
 
-    public boolean isValid(T valueForVerification) {
+    public boolean isValid(T checkedValue) {
 
-        checkedValue = valueForVerification;
+        nameCheckToMechanicsCheck = getNameCheckToMechanicsCheck();
 
-        if (!getVerificationRepository().containsKey("required") && checkedValue == null) {
+        if (!getNameCheckToMechanicsCheck().containsKey("required") && checkedValue == null) {
             return true;
         }
 
-        var finalVerificationRepository = getVerificationRepository().values();
+        var finalVerificationRepository = getNameCheckToMechanicsCheck().values();
         var isValid = true;
 
         for (var check : finalVerificationRepository) {

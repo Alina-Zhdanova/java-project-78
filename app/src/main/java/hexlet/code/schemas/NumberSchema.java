@@ -10,20 +10,24 @@ import java.util.function.Predicate;
 @Getter
 public class NumberSchema extends BaseSchema<Integer> {
 
-    private final Map<String, Predicate<Integer>> verificationRepository = new HashMap<>();
+    private final Map<String, Predicate<Integer>> nameCheckToMechanicsCheck = new HashMap<>();
+
+    public NumberSchema() {
+        super();
+    }
 
     public NumberSchema required() {
-        verificationRepository.put("required", Objects::nonNull);
+        nameCheckToMechanicsCheck.put("required", Objects::nonNull);
         return this;
     }
 
     public NumberSchema positive() {
-        verificationRepository.put("positive", value -> value > 0);
+        nameCheckToMechanicsCheck.put("positive", value -> value > 0);
         return this;
     }
 
     public NumberSchema range(int lowerLimit, int upperLimit) {
-        verificationRepository.put("range", value -> value >= lowerLimit && value <= upperLimit);
+        nameCheckToMechanicsCheck.put("range", value -> value >= lowerLimit && value <= upperLimit);
         return this;
     }
 

@@ -9,20 +9,24 @@ import java.util.function.Predicate;
 @Getter
 public class StringSchema extends BaseSchema<String> {
 
-    private final Map<String, Predicate<String>> verificationRepository = new HashMap<>();
+    private final Map<String, Predicate<String>> nameCheckToMechanicsCheck = new HashMap<>();
+
+    public StringSchema() {
+        super();
+    }
 
     public StringSchema required() {
-        verificationRepository.put("required", value -> value != null && !value.isEmpty());
+        nameCheckToMechanicsCheck.put("required", value -> value != null && !value.isEmpty());
         return this;
     }
 
     public StringSchema minLength(int length) {
-        verificationRepository.put("minLength", value -> value.length() >= length);
+        nameCheckToMechanicsCheck.put("minLength", value -> value.length() >= length);
         return this;
     }
 
     public StringSchema contains(String substring) {
-        verificationRepository.put("contains", value -> value.contains(substring));
+        nameCheckToMechanicsCheck.put("contains", value -> value.contains(substring));
         return this;
     }
 
