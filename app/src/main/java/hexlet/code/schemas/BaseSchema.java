@@ -8,11 +8,11 @@ import java.util.function.Predicate;
 
 @Getter
 @NoArgsConstructor
-public abstract class BaseSchema<T> {
+public class BaseSchema<T> {
 
     private Map<String, Predicate<T>> nameCheckToMechanicsCheck;
 
-    public boolean isValid(T checkedValue) {
+    public final boolean isValid(T checkedValue) {
 
         nameCheckToMechanicsCheck = getNameCheckToMechanicsCheck();
 
