@@ -8,7 +8,7 @@ public abstract class BaseSchema<T> {
 
     protected Map<String, Predicate<T>> nameCheckToMechanicsCheck = new HashMap<>();
 
-    public boolean isValid(T checkedValue) {
+    public final boolean isValid(T checkedValue) {
 
         if (!nameCheckToMechanicsCheck.containsKey("required") && checkedValue == null) {
             return true;
