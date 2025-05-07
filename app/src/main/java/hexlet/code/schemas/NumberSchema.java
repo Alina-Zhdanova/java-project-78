@@ -1,16 +1,8 @@
 package hexlet.code.schemas;
 
-import lombok.Getter;
-
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
-import java.util.function.Predicate;
 
-@Getter
 public final class NumberSchema extends BaseSchema<Integer> {
-
-    private final Map<String, Predicate<Integer>> nameCheckToMechanicsCheck = new HashMap<>();
 
     public NumberSchema() {
         super();

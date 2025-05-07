@@ -1,29 +1,23 @@
 package hexlet.code.schemas;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Predicate;
 
-@Getter
-@NoArgsConstructor
-public class BaseSchema<T> {
+public abstract class BaseSchema<T> {
 
-    private Map<String, Predicate<T>> nameCheckToMechanicsCheck;
+    protected Map<String, Predicate<T>> nameCheckToMechanicsCheck = new HashMap<>();
 
-    public final boolean isValid(T checkedValue) {
+    public boolean isValid(T checkedValue) {
 
-        nameCheckToMechanicsCheck = getNameCheckToMechanicsCheck();
-
-        if (!getNameCheckToMechanicsCheck().containsKey("required") && checkedValue == null) {
+        if (!nameCheckToMechanicsCheck.containsKey("required") && checkedValue == null) {
             return true;
         }
 
-        var finalVerificationRepository = getNameCheckToMechanicsCheck().values();
+        var checks = nameCheckToMechanicsCheck.values();
         var isValid = true;
 
-        for (var check : finalVerificationRepository) {
+        for (var check : checks) {
             isValid = isValid && check.test(checkedValue);
         }
 
