@@ -4,10 +4,6 @@ import java.util.Objects;
 
 public final class NumberSchema extends BaseSchema<Integer> {
 
-    public NumberSchema() {
-        super();
-    }
-
     public NumberSchema required() {
         nameCheckToMechanicsCheck.put("required", Objects::nonNull);
         return this;

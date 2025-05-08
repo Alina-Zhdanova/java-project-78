@@ -5,10 +5,6 @@ import java.util.Objects;
 
 public final class MapSchema extends BaseSchema<Map<String, String>> {
 
-    public MapSchema() {
-        super();
-    }
-
     public MapSchema required() {
         nameCheckToMechanicsCheck.put("required", Objects::nonNull);
         return this;
